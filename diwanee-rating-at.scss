@@ -1,0 +1,60 @@
+.b-rating {
+  opacity: 0.1;
+  transition: opacity 0.4s;
+  .b-rating__item {
+    display: inline-block;
+    width:26px;
+    height: 21px;
+    max-width: 20%;
+  }  
+}
+.b-rating.unvotable {
+  .b-rating__item:hover {
+    cursor: default;
+  }     
+}
+.b-rating.fetched {
+  opacity: 1;     
+}
+
+// Hover effects
+.article__author .voting-star {
+  -webkit-transition: stroke .4s;
+  transition: stroke .4s;
+}
+.article__author .b-rating:hover:not(.unvotable) {
+  .voting-star 
+  {
+    stroke: gray;
+    cursor: pointer;
+  }
+  .b-rating__item:nth-child(1):hover  + .b-rating__item .voting-star,
+  .b-rating__item:nth-child(1):hover + .b-rating__item + .b-rating__item .voting-star,
+  .b-rating__item:nth-child(1):hover + .b-rating__item + .b-rating__item + .b-rating__item .voting-star,
+  .b-rating__item:nth-child(1):hover + .b-rating__item + .b-rating__item + .b-rating__item + .b-rating__item .voting-star,
+  {
+    stroke: transparent;
+  }
+  .b-rating__item:nth-child(2):hover  + .b-rating__item .voting-star,
+  .b-rating__item:nth-child(2):hover + .b-rating__item + .b-rating__item .voting-star,
+  .b-rating__item:nth-child(2):hover + .b-rating__item + .b-rating__item + .b-rating__item .voting-star
+  {
+    stroke: transparent;
+  }
+  .b-rating__item:nth-child(3):hover + .b-rating__item .voting-star,
+  .b-rating__item:nth-child(3):hover + .b-rating__item + .b-rating__item .voting-star
+  {
+    stroke: transparent;
+  }
+  .b-rating__item:nth-child(4):hover + .b-rating__item .voting-star
+  {
+    stroke: transparent;
+  }
+}
+
+// gradients
+    .b-rating__item {background-image: none!important;}
+    .voting-star {width: 22px;height: 22px;}
+    .voting-star {  fill: silver;  stroke: transparent;}
+    .half > .voting-star {  fill: url('#voting-star-gradient');} // FIREFOX FIXED IN JS, posible fix is to grunt/gulp scss to js
+    .full > .voting-star {  fill: gold;}
