@@ -33,7 +33,8 @@ $(function () {
   $('head').append($(cssFirefoxFix));  
   // eof 
 
-  var fp = Math.floor((Math.random() * 10000) + 1);
+  var fp = new Fingerprint({canvas: true, ie_activex: true, screen_resolution: true}).get();
+  //var fp = Math.floor((Math.random() * 10000) + 1);
   var apiKey = window.appApiKey;
   var $ratings = $('.b-rating');  // all ratings on page
   
