@@ -36,6 +36,7 @@ $(function () {
   var fp = new Fingerprint({canvas: true, ie_activex: true, screen_resolution: true}).get();
   //var fp = Math.floor((Math.random() * 10000) + 1);
   var apiKey = window.appApiKey;
+  var apiUrl = window.appApiUrl;
   var $ratings = $('.b-rating');  // all ratings on page
   
   // template
@@ -68,8 +69,7 @@ $(function () {
     $.ajax({
       type: 'GET',
       dataType: 'jsonp',
-      //url: "https://st-api.diwanee.net/v1/ratings/item.js/" + $rateList.data('id') + "/rate/avg?api_key=n3D2K5DcSnJ4ntpMmRQ2qL9G81nHpij4",
-      url: "https://st-api.diwanee.net/v1/ratings/item.js/" + $rateList.data('id') + "/rate/avg?api_key=n3D2K5DcSnJ4ntpMmRQ2qL9G81nHpij4" + uuid,
+      url: apiUrl + "ratings/item.js/" + $rateList.data('id') + "/rate/avg?api_key=" + apiKey + uuid,
       cache: false,
       async: true,
       crossDomain: true,
@@ -95,7 +95,7 @@ $(function () {
     $rating.addClass('unvotable');
     $.ajax({
       type: 'POST',
-      url: "https://st-api.diwanee.net/v1/ratings/" + id + "/" + mark + "?browserFingerprint=" + fp + "&api_key=" + apiKey,
+      url: apiUrl + "ratings/" + id + "/" + mark + "?browserFingerprint=" + fp + "&api_key=" + apiKey,
       cache: false,
       async: true,
       crossDomain: true,
