@@ -38,6 +38,7 @@ $(function () {
   var apiKey = window.appApiKey;
   var apiUrl = window.appApiUrl;
   var $ratings = $('.b-rating');  // all ratings on page
+  var $countElement = $('.article__author .b-rating__count');
   
   // template
   var stars = "";
@@ -62,6 +63,10 @@ $(function () {
     });
   };
 
+  printCount = function (totalRateItems) {
+    $(".article__author__rating-count").hide();
+    $countElement.html('('.concat(totalRateItems, ')'));
+  };
 
   // Single Item Data Fetch
   var singleFetch = function ($rateList) {
@@ -75,6 +80,9 @@ $(function () {
       crossDomain: true,
       success: function (response) {
         printRating($rateList, response.data.average);
+        if ($rateList.parent('div.article__author .rating-widget').length) {
+          printCount(response.data.totalRateItems);
+        }
         $rateList.addClass('fetched');
       },
       error: function (e) {
@@ -105,7 +113,8 @@ $(function () {
         itemUuid: uuid
       },
       success: function (data) {
-        printRating($rating, data.average)
+        printRating($rating, data.average);
+        printCount(data.totalRateItems);
         //singleFetch($rating, data.average);
       },
       error: function (e) {
