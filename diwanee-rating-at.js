@@ -97,6 +97,9 @@ $(function () {
     var id = $rating.data('id');
     var uuid = $rating.data('uuid');
     var mark = ($clicked.parent().children('li').index($clicked) + 1) * 2;
+    if(mark>10){
+      mark = 10;
+    }
     if ($rating.hasClass('unvotable')) {
       return;
     }
